@@ -2,7 +2,7 @@
 
 This is the repository that contains source code for the [M²Diffuser website](https://m2diffuser.github.io/)
 
-If you find M²Diffuser useful for your work please cite:
+If you find M²Diffuser useful for your work, please cite:
 ```
 
 ```
