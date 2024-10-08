@@ -1,15 +1,10 @@
-# PhyScene: Physically Interactable 3D Scene Synthesis for Embodied AI
+# M²Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes
 
-This is the repository that contains source code for the [PhyScene website](https://PhyScene.github.io/)
+This is the repository that contains source code for the [M²Diffuser website](https://m2diffuser.github.io/)
 
-If you find PhyScene useful for your work please cite:
+If you find M²Diffuser useful for your work please cite:
 ```
-@inproceedings{yang2024physcene,
-          title={PhyScene: Physically Interactable 3D Scene Synthesis for Embodied AI},
-          author={Yang, Yandan and Jia, Baoxiong and Zhi, Peiyuan and Huang, Siyuan},
-          booktitle={Proceedings of Conference on Computer Vision and Pattern Recognition (CVPR)},
-          year={2024}
-        }
+
 ```
 
 ## Website License
