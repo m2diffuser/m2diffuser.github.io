@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="M²Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes">
+    <meta name="keywords" content="Mobile Manipulation, Embodied AI, Diffusion Model, Trajectory Generation and Optimization">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>M²Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes</title>
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+  
+      gtag('config', 'G-PYVRSFMDRL');
+    </script>
+  
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./assets/icon/robot.png">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    
+  </head>
+  
+  <body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <style>
+              .publication-title {
+                  font-size: 2.6em; /* change title font size */
+              }
+            </style>
+            <h1 class="title is-0 publication-title">M<sup>2</sup>Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes</h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/Yansixu/">Sixu Yan</a><sup>1,2</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://zeyuzhang.com/">Zeyu Zhang</a><sup>2</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://sites.google.com/view/muzhihan">Muzhi Han</a><sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://m2diffuser.github.io/">Zaijin Wang</a><sup>2</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://m2diffuser.github.io/">Qi Xie</a><sup>2</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://m2diffuser.github.io/">Zhitian Li</a><sup>2,4</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://m2diffuser.github.io/">Zhehan Li</a><sup>2,5</sup>&nbsp;&nbsp;&nbsp;</span>
+              <br>
+              <span class="author-block">
+                <a href="https://liuhx111.github.io/">Hangxin Liu</a><sup>2,✉️</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://xwcv.github.io/">Xinggang Wang</a><sup>1,✉️</sup>&nbsp;&nbsp;&nbsp;</span> 
+              <span class="author-block">
+                <a href="https://zhusongchun.net/">Song-Chun Zhu</a><sup>2,6,7</sup>&nbsp;&nbsp;&nbsp;</span> 
+
+              <span class="author-block">
+              </span>
+
+              <p style="font-size: 0.9em; padding: 0.5em 0 0 0;">✉️ indicates corresponding author</p>
+
+              <span class="author-block"><sup>1 </sup>School of Electronic Information and Communications, Huazhong University of Science and Technology.</span>      
+              <span class="author-block"><sup>2 </sup>State Key Laboratory of General Artificial Intelligence (BIGAI).</span>
+              <span class="author-block"><sup>3 </sup>Center for Vision, Cognition, Learning, and Autonomy (VCLA), Statistics Department, UCLA.</span>
+              <span class="author-block"><sup>4 </sup>School of Automation Science and Electrical Engineering, Beihang University.</span>
+              <span class="author-block"><sup>5 </sup>School of Artificial Intelligence, Xidian University.</span>
+              <span class="author-block"><sup>6 </sup>School of Intelligence Science and Technology, Peking University.</span>
+              <span class="author-block"><sup>7 </sup>Institute for Artificial Intelligence, Peking University.</span>              
+            </div>
+
+            <!-- <p style="font-size: 0.9em; padding: 0.5em 0 0 0;">✶ indicates equal contribution &nbsp&nbsp&nbsp  ✉️ indicates corresponding author</p> -->
+            
+            <!-- affiliation -->
+            <br>
+            <div class="image-row">
+              <img src="./assets/affiliation/hust.png" alt="hust" style="height: 123px; width: auto;">
+              <img src="./assets/affiliation/bigai.png" alt="bigai" style="height: 125px; width: auto;">
+              <img src="./assets/affiliation/vcla.png" alt="vcla" style="height: 125px; width: auto;">
+              <img src="./assets/affiliation/bhu.png" alt="bhu" style="height: 125px; width: auto;">
+              <img src="./assets/affiliation/xdu.png" alt="xdu" style="height: 125px; width: auto;">
+              <img src="./assets/affiliation/pku.png" alt="pku" style="height: 125px; width: auto;">
+            </div>
+            <br>
+      
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="assets/paper/CVPR24_PhyScene.pdf" 
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Arxiv Link. need changing -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2404.09465.pdf"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/embed/C9sEwcqrTww?si=I9YaajZj9Lz9NoeR"
+                     class="external-link button is-normal is-rounded is-dark ">
+                    <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. need changing -->
+                <span class="link-block">
+                    <a href="https://github.com/PhyScene/PhyScene/tree/main"
+                      class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- Data Link. need changing -->
+                <span class="link-block">
+                  <!-- <a target="_blank" href="" -->
+                  <a target="_blank" href="https://forms.gle/AXMk7MH6bFXpCqd99"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fa fa-database"></i>
+                    </span>
+                    <span>Data (Coming Soon)</span>
+                    </a>
+                </span>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="has-text-centered content-block">
+        <iframe width="760" height="427" src="https://www.youtube.com/embed/C9sEwcqrTww?si=I9YaajZj9Lz9NoeR" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      
+      <div class="hero-body"> 
+        <h2 class="subtitle has-text-justified">
+          <b>TL;DR</b>&nbsp; We propose <b>M²Diffuser</b>, the first neural motion planner tailored for mobile manipulation in embodied AI. Inspired by advanced generative modeling techniques, it seamlessly integrates multiple physics-based constraints and flexibly handle different task objectives, and directly generates highly coordinated whole-body motion trajectories with physical plausibility and task-related objective from robot-centric natural 3D scans. M²Diffuser outperforms previous neural motion planners across diverse tasks, establishing its efficacy and flexibility. Remarkably trained only with simulated data, it achieves a seamless transfer from simulation to real-world 3D environments upon actual deployment.
+        </h2>
+      </div>
+    </div>   
+  </section>
+  
+  <!-- <hr style="background-color:#f5f5f5; border:none; display:block; width: auto; height:2px; margin:1.5rem 0"> -->
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              In this paper, we introduce M²Diffuser, the first neural motion planner to employ generative modeling techniques for producing holistic mobile manipulation motions in 3D environments. M²Diffuser seamlessly integrates multiple physics-based constraints and flexibly handle different task objectives, directly generating highly coordinated whole-body motion trajectories with physical plausibility and task-related objective from robot-centric natural 3D scans. It learns trajectory-level distributions conditioned on 3D observations via a conditional diffusion model and serve as a prior motion generator, which iteratively optimizes the sampled trajectories and task-related goals at each denoising step during inference in a fully differentiable manner. Compared to traditional motion planners, M²Diffuser directly samples trajectories from natural 3D scans without the dependence on prior scene knowledge and heuristic target designs. Additionally, we benchmark M²Diffuser across three common mobile manipulation tasks within household environments and demonstrate that it significantly outperforms existing state-of-the-art neural planners on various metrics. In contrast to previous works, the M²Diffuser yields powerful advantages when used for mobile manipulation, including optimizable motion generation, scalability and robustness in diverse environments and near-optimal trajectory generation. Although trained solely by simulated data, M²Diffuser performs effectively when transferred to a real mobile manipulator, without exhibiting a sim2real gap.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+  
+  
+      <!-- Method Overview. -->
+      <!-- <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <center>
+            <video id="teaser" autoplay muted loop playsinline >
+              <source src="assets/videos/gif.mp4" type="video/mp4">
+            </video>
+          </center>
+          <div class="content has-text-justified">      
+          </div>         
+        </div>
+      </div> -->
+      <!--/ Method Overview. -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Challenges in Mobile Manipulation -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+        <h2 class="title is-3">Challenges in Mobile Manipulation</h2>
+        </div>
+      </div>
+      <p>
+        Mobile manipulation has been widely applied to tasks such as grasping, placement, and object rearrangement. An ideal motion planner must not only consider the <b>environment's geometry</b> to avoid collisions but also ensure that the generated trajectories are well-suited to the <b>robot's embodiment</b> (joint limits, robot kinematics and base-arm coordination) and capable of successfully completing the <b>specific tasks</b> (grasping or placement objectives). 
+      </p>
+      <br>
+      <img src="assets/figure/challenges_mm.jpg" style="width:100%; margin-right:auto; margin-left:auto; margin-top:auto;">
+      <p>
+        In this work, we aim to design a neural motion planner that considers multiple constraints in mobile manipulation while generating motion trajectories. There are two key challenges to be solved: (1) <b>how to acquire high-quality training data for high-dimensional mobile manipulation</b> and (2) <b>how to effectively integrate multiple constraints into motion generation framework for ensuring physical safety execution</b>.
+      </p>
+    </div>
+    <!--/ Challenges in Mobile Manipulation -->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+    <!-- Whole-body Mobile Manipulation Data Collection -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+        <h2 class="title is-3">Whole-body Mobile Manipulation Data Collection</h2>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column">
+          <img src="assets/figure/data_collection.jpg" width="100%">
+        </div>
+        <div class="column">
+          <div class="content has-text-justified">
+            <p>
+              To obtain high-quality training data, we propose a dataset collection tool comprising three key components. (a) The <b>Task Builder</b> enables the construction of mobile manipulation tasks through high-level configurations, including scene and robot URDF, manipulated object link, target end effector goal, and task type. (b) The <b>Expert Solver</b> computes optimal whole-body coordinated trajectories by leveraging the VKC algorithm. (c) The <b>Data Collector</b> is responsible for recording the planned trajectories, and processing the segmented and calibrated point clouds, which are cropped from the perfect 3D scan based on the bounding box around the robot's initial state.
+            </p>
+            <div class="columns is-centered">
+              <video poster="" id="arkit" autoplay controls muted loop width="100%">
+                <source src="assets/videos/dataset/data_collection.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Whole-body Mobile Manipulation Data Collection -->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Mobile Manipulation Diffuser-->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+        <h2 class="title is-3">Mobile Manipulation Diffuser</h2>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-one-third">
+          <video poster="" id="arkit" autoplay controls muted loop width="95%">
+            <source src="assets/videos/m2diffuser/diffusion_process.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column">
+          <div class="content has-text-justified">
+            <p>
+              To effectively integrate multiple constraints into learning-based motion generation framework, we propose M²Diffuser, the first neural motion planner tailored for mobile manipulation in 3D scenes. M²Diffuser is a <b>diffusion-based</b> motion planner designed to sample and optimize <b>whole-body coordinated trajectories</b> directly from natural 3D scans. Utilizing <b>robot-centric 3D scans</b> as visual observations, it employs an iterative denoising process to gradually generate task-related whole-body motion trajectories conditioned on 3D environments (see the video on the left). M²Diffuser integrates multiple constraints into the denoising process, where optimization is achieved at each denoising step via differentiable physics-based cost and task-oriented energy functions. These functions can be explicitly defined or learned from data. This framework ensures the <b>physical plausibility</b> and <b>task completion</b> of the generated trajectories to the greatest extent.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <img src="assets/figure/overview.png" style="width:100%; margin-right:auto; margin-left:auto; margin-top:auto;">
+        </div>
+      </div>
+    </div>
+    <!--/ Mobile Manipulation Diffuser-->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Experiments in Simulated 3D Scenes -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Experiments in Simulated 3D Scenes</h2>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-4">Rigorous and Reasonable Evaluation Metrics</h3>
+        </div>
+      </div>
+      <div class="column">
+        <p>
+          We utilize NVIDIA Isaac Sim to accurately and quantitatively evaluate physical grasping and placement within the simulated 3D environments, resulting in more reliable evaluations compared to previous studies.
+        </p>
+      </div>
+      <div class="columns is-centered">
+        <div class="column">
+          <img src="assets/figure/eval_process.jpg" width="100%"></img>
+        </div>
+        <div class="column">
+          <div class="content has-text-justified">
+            <div class="column">
+              <img src="assets/figure/eval_grasp.jpg" width="100%"></img>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+                <video id="grasp_motion" autoplay controls muted loop playsinline height="100%">
+                  <source src="assets/videos/eval/grasp_motion.mp4" type="video/mp4">
+                </video>         
+                <h2 class="subtitle is-6 has-text-centered">Grasping Motion</h2>
+            </div>
+            <div class="column">
+                <video id="grasp_eval" autoplay controls muted loop playsinline height="100%">
+                  <source src="assets/videos/eval/grasp_eval.mp4" type="video/mp4">
+                </video>
+                <h2 class="subtitle is-6 has-text-centered">Grasping Evaluation</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-4">Comparison of Different Methods</h3>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <img src="assets/figure/quality_comparison.png" style="width:100%; margin-right:auto; margin-left:auto; margin-top:auto;">
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-4">Grasping Motions Generated by M²Diffuser</h3>
+        </div>
+      </div>
+
+      <div class="video-container">
+        <!-- Grasping Videos -->
+        <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/13/13_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/13/13_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/76/76_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/76/76_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/104/104_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/104/104_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/226/226_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/226/226_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/278/278_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/278/278_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/407/407_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/407/407_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/46/46_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/pick/46/46_view2.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/457/457_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/457/457_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/462/462_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/462/462_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/506/506_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/506/506_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+        
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/544/544_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/544/544_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/708/708_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/708/708_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+        
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/731/731_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/731/731_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-inner">
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/942/942_view1.mp4" type="video/mp4">
+                </video>
+                <video autoplay controls muted loop playsinline>
+                  <source src="assets/videos/simulation_exp/pick/942/942_view2.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+      <!--\ Grasping Videos -->
+      </div>
+      <br>
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-4">Placement Motions Generated by M²Diffuser</h3>
+        </div>
+      </div>
+
+      <div class="video-container">
+        <!-- Placement Videos -->
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/121/121_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/121/121_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/305/305_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/305/305_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/597/597_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/597/597_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/14/14_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/14/14_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/182/182_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/182/182_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/48/48_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/48/48_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/410/410_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/410/410_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/553/553_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/553/553_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/897/897_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/place/897/897_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <!--\ Placement Videos -->
+      </div>
+      <br>
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-4">Goal-reaching Motions Generated by M²Diffuser</h3>
+        </div>
+      </div>
+
+      <div class="video-container">
+        <!-- Goal-reaching Videos -->
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/12/12_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/12/12_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/14/14_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/14/14_view2.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/42/42_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/42/42_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/73/73_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/73/73_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/87/87_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/87/87_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/263/263_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/263/263_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+            <video autoplay controls muted loop playsinline>
+              <source src="assets/videos/simulation_exp/goal-reach/257/257_view1.mp4" type="video/mp4">
+            </video>
+            <video autoplay controls muted loop playsinline>
+              <source src="assets/videos/simulation_exp/goal-reach/257/257_view2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        
+        <div class="video-item">
+          <div class="video-inner">
+            <video autoplay controls muted loop playsinline>
+              <source src="assets/videos/simulation_exp/goal-reach/302/302_view1.mp4" type="video/mp4">
+            </video>
+            <video autoplay controls muted loop playsinline>
+              <source src="assets/videos/simulation_exp/goal-reach/302/302_view2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/211/211_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/211/211_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/315/315_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/315/315_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/458/458_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/458/458_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/502/502_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/502/502_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/569/569_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/569/569_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/657/657_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/657/657_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <div class="video-item">
+          <div class="video-inner">
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/880/880_view1.mp4" type="video/mp4">
+              </video>
+              <video autoplay controls muted loop playsinline>
+                <source src="assets/videos/simulation_exp/goal-reach/880/880_view2.mp4" type="video/mp4">
+              </video>
+          </div>
+        </div>
+
+        <!--\ Goal-reaching Videos -->
+      </div>
+
+    <!--/ Experiments in Simulated 3D Scenes -->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Experiments in Real-wolrd 3D Scenes -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Experiments in Real-world 3D Scenes</h2>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column">
+          <img src="assets/figure/3D_scan.jpg" style="width:100%; margin-right:auto; margin-left:auto; margin-top:auto;">      
+          <h2 class="subtitle is-6 has-text-centered">Real-wolrd 3D Scans</h2>
+        </div>
+        <div class="column">
+          <img src="assets/figure/robot.jpg" style="width:100%; margin-right:auto; margin-left:auto; margin-top:auto;">
+          <h2 class="subtitle is-6 has-text-centered">Mobile Manipulator</h2>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column">
+            <video id="real_world_exp_demo1" autoplay controls muted loop playsinline height="100%">
+              <source src="assets/videos/real_world_exp/1-3_x5_v1.mp4" type="video/mp4">
+            </video>         
+        </div>
+        <div class="column">
+            <video id="real_world_exp_demo2" autoplay controls muted loop playsinline height="100%">
+              <source src="assets/videos/real_world_exp/2-3_x5_v1.mp4" type="video/mp4">
+            </video>
+        </div>
+      </div>
+
+    </div>
+    <!--/ Experiments in Real-wolrd 3D Scenes -->
+  </section>
+
+  
+  
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code class="language-bibtex">
+        <!-- @inproceedings{yang2024physcene,
+          title={PhyScene: Physically Interactable 3D Scene Synthesis for Embodied AI},
+          author={Yang, Yandan and Jia, Baoxiong and Zhi, Peiyuan and Huang, Siyuan},
+          booktitle={Proceedings of Conference on Computer Vision and Pattern Recognition (CVPR)},
+          year={2024}
+        } -->
+      </code></pre>
+    </div>
+  </section>
+  
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              Website source code is borrowed from <a
+                href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  </body>
+  </html>
