@@ -127,7 +127,7 @@
                 </span>
                 <!-- Video Link. -->
                 <span class="link-block">
-                  <a href="https://www.youtube.com/watch?v=_2RVa1-KJE4"
+                  <a href="https://youtu.be/T7kpDifRtfk?si=-R5agRpDM4uJKtuz"
                      class="external-link button is-normal is-rounded is-dark ">
                     <span class="icon">
                         <i class="fab fa-youtube"></i>
@@ -171,7 +171,7 @@
         <div class="column is-four-fifths">
           <div class="publication-video">
             <!-- need changing -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/_2RVa1-KJE4?si=W1azMvlrenuq05aR"
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/T7kpDifRtfk?si=pjS7oUFgu86_PkI_"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
@@ -198,7 +198,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              In this paper, we introduce M²Diffuser, the first neural motion planner to employ generative modeling techniques for producing holistic mobile manipulation motions in 3D environments. M²Diffuser seamlessly integrates multiple physics-based constraints and flexibly handle different task objectives, directly generating highly coordinated whole-body motion trajectories with physical plausibility and task-related objective from robot-centric natural 3D scans. It learns trajectory-level distributions conditioned on 3D observations via a conditional diffusion model and serve as a prior motion generator, which iteratively optimizes the sampled trajectories and task-related goals at each denoising step during inference in a fully differentiable manner. Compared to traditional motion planners, M²Diffuser directly samples trajectories from natural 3D scans without the dependence on prior scene knowledge and heuristic target designs. Additionally, we benchmark M²Diffuser across three common mobile manipulation tasks within household environments and demonstrate that it significantly outperforms existing state-of-the-art neural planners on various metrics. In contrast to previous works, the M²Diffuser yields powerful advantages when used for mobile manipulation, including optimizable motion generation, scalability and robustness in diverse environments and near-optimal trajectory generation. Although trained solely by simulated data, M²Diffuser performs effectively when transferred to a real mobile manipulator, without exhibiting a sim2real gap.
+              Recent advances in diffusion models have opened new avenues for research into embodied AI agents and robotics. Despite significant achievements in complex robotic locomotion and skills, mobile manipulation—a capability that requires the coordination of navigation and manipulation—remains a challenge for generative AI techniques. This is primarily due to the high-dimensional action space, extended motion trajectories, and interactions with the surrounding environment. In this paper, we introduce <b>M²Diffuser</b>, a diffusion-based, scene-conditioned generative model that directly generates coordinated and efficient whole-body motion trajectories for mobile manipulation based on robot-centric 3D scans. M²Diffuser first learns trajectory-level distributions from mobile manipulation trajectories provided by an expert planner. Crucially, it incorporates an optimization module that can flexibly accommodate physics-based constraints and task objectives, modeled as cost and energy functions, during the inference process. This enables the reduction of physical violations and execution errors at each denoising step in a fully differentiable manner. Through benchmarking on three types of mobile manipulation tasks across over 20 scenes, we demonstrate that M²Diffuser outperforms state-of-the-art neural planners and successfully transfers the generated trajectories to a real-world robot. Our evaluations underscore the potential of generative AI to enhance the scalability of traditional planning and learning-based robotic methods, while also highlighting the critical role of enforcing physics-based constraints for safe and robust execution.
             </p>
           </div>
         </div>
