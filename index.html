@@ -205,7 +205,6 @@
       </div>
       <!--/ Abstract. -->
   
-  
       <!-- Method Overview. -->
       <!-- <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -957,7 +956,7 @@
       <div class="column">
         <div class="content has-text-justified">
           <p>
-             In this paper, we also demonstrate the advantages of the diffusion-based planner over previous autoregressive planners for mobile manipulation tasks.
+             We demonstrate the advantages of the diffusion-based planner over previous autoregressive planners for solving mobile manipulation tasks.
           </p>
         </div>
       </div>
@@ -965,16 +964,38 @@
       <div class="column">
         <div class="columns is-centered">
           <div class="column is-full-width">
-            <img src="assets/figure/auto_vs_diffusion.png" style="width:100%; margin-right:auto; margin-left:auto; margin-top:auto;">
+            <img src="assets/figure/auto_vs_diffusion.png" style="width:90%; display:block; margin:auto; margin-top:auto;">
           </div>
         </div>
 
         <div class="content has-text-justified">
           <p>
-            Diffusion planning directly generates and optimizes the entire trajectory sequences through an iterative denoising process, whereas autoregressive planning generates the next-step output only based on previously planned partial subsequences. The property of diffusion planning inherently promotes global optimality, as it considers the long-term effects of each action throughout the sequence, avoiding the pitfalls of myopic planning. So diffusion planning is better suited for learning complex, high-dimensional and long-horizon mobile manipulation.
+            Diffusion planning directly generates and optimizes the entire trajectory sequences through an iterative denoising process, whereas autoregressive planning generates the next-step output only based on previously planned partial subsequences. The inherent property of diffusion planning fosters global optimality, as it accounts for the long-term effects of each action throughout the entire sequence, thereby avoiding the limitations of myopic planning. Consequently, <b>M²Diffuser</b> is better suited for learning complex, high-dimensional, and long-horizon mobile manipulation tasks.
           </p>
         </div>
       </div>
+
+      <div class="columns is-centered">
+        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
+          <div class="image-container">
+            <img src="assets/figure/auto_planning.png" alt="Automatic Planning" style="width:100%;">
+          </div>
+        </div>
+      
+        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
+          <div class="image-container">
+            <img src="assets/figure/diffusion_planning.png" alt="Diffusion Planning" style="width:95%;">
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="content has-text-justified">
+        <p>
+          Autoregressive planning encodes task objectives and related motion constraints implicitly in demonstration data or carefully designed reward or loss functions, which often struggle to eliminate the physical violations of the generated trajectories during model inference. Instead, <b>M²Diffuser</b> imposes physical constraints and task-oriented objectives on the sampled trajectories during inference via well-crafted differentiable functions. These functions can be either explicitly defined or learned from data. This design facilitates the integration of multiple constraints and the fine-tuning of hyperparameters, which is conducive to the safe execution of generated trajectories on real robots.
+        </p>
+      </div>
+    </div>
 
     </div>
   </section> -->
