@@ -51,6 +51,11 @@
             </style>
             <h1 class="title is-0 publication-title">M<sup>2</sup>Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes</h1>
 
+            <p style="color: red; font-weight: bold; font-size: 24px;">
+              IEEE Transactions on Pattern Analysis and Machine Intelligence (T-PAMI) 2025
+            </p>
+            <br>
+
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://github.com/Yansixu/">Sixu Yan</a><sup>1,2</sup>&nbsp;&nbsp;&nbsp;</span>
@@ -108,7 +113,7 @@
               <div class="publication-links">
                 <span class="link-block">
                   <a href="assets/paper/M2Diffuser.pdf" 
-                     class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="fas fa-file-pdf"></i>
                     </span>
@@ -118,7 +123,7 @@
                 <!-- Arxiv Link. need changing -->
                 <span class="link-block">
                   <a href="https://arxiv.org/pdf/2410.11402"
-                     class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="ai ai-arxiv"></i>
                     </span>
@@ -128,7 +133,7 @@
                 <!-- Video Link. -->
                 <span class="link-block">
                   <a href="https://youtu.be/T7kpDifRtfk?si=-R5agRpDM4uJKtuz"
-                     class="external-link button is-normal is-rounded is-dark ">
+                    class="external-link button is-normal is-rounded is-dark ">
                     <span class="icon">
                         <i class="fab fa-youtube"></i>
                     </span>
@@ -137,23 +142,23 @@
                 </span>
                 <!-- Code Link. need changing -->
                 <span class="link-block">
-                    <a href=""
+                    <a href="https://github.com/m2diffuser/M2Diffuser"
                       class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="fab fa-github"></i>
                     </span>
-                    <span>Code (Coming Soon)</span>
+                    <span>Code</span>
                   </a>
                 </span>
                 <!-- Data Link. need changing -->
                 <span class="link-block">
                   <!-- <a target="_blank" href="" -->
-                  <a target="_blank" href=""
+                  <a target="_blank" href="https://huggingface.co/datasets/M2Diffuser/mec_kinova_mobile_manipulation/tree/main"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="fa fa-database"></i>
                     </span>
-                    <span>Data (Coming Soon)</span>
+                    <span>Data</span>
                     </a>
                 </span>
               </div>
@@ -944,67 +949,19 @@
     </div>
     <!--/ Experiments in Real-wolrd 3D Scenes -->
   </section>
-
-  <!-- <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title is-3">Discussion: Diffusion Planning <em>vs.</em> Autoregressive Planning</h2>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-             We demonstrate the advantages of the diffusion-based planner over previous autoregressive planners for solving mobile manipulation tasks.
-          </p>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="columns is-centered">
-          <div class="column is-full-width">
-            <img src="assets/figure/auto_vs_diffusion.png" style="width:90%; display:block; margin:auto; margin-top:auto;">
-          </div>
-        </div>
-
-        <div class="content has-text-justified">
-          <p>
-            Diffusion planning directly generates and optimizes the entire trajectory sequences through an iterative denoising process, whereas autoregressive planning generates the next-step output only based on previously planned partial subsequences. The inherent property of diffusion planning fosters global optimality, as it accounts for the long-term effects of each action throughout the entire sequence, thereby avoiding the limitations of myopic planning. Consequently, <b>M²Diffuser</b> is better suited for learning complex, high-dimensional, and long-horizon mobile manipulation tasks.
-          </p>
-        </div>
-      </div>
-
-      <div class="columns is-centered">
-        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
-          <div class="image-container">
-            <img src="assets/figure/auto_planning.png" alt="Automatic Planning" style="width:100%;">
-          </div>
-        </div>
-      
-        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
-          <div class="image-container">
-            <img src="assets/figure/diffusion_planning.png" alt="Diffusion Planning" style="width:95%;">
-          </div>
-        </div>
-      </div>
-      
-
-      <div class="content has-text-justified">
-        <p>
-          Autoregressive planning encodes task objectives and related motion constraints implicitly in demonstration data or carefully designed reward or loss functions, which often struggle to eliminate the physical violations of the generated trajectories during model inference. Instead, <b>M²Diffuser</b> imposes physical constraints and task-oriented objectives on the sampled trajectories during inference via well-crafted differentiable functions. These functions can be either explicitly defined or learned from data. This design facilitates the integration of multiple constraints and the fine-tuning of hyperparameters, which is conducive to the safe execution of generated trajectories on real robots.
-        </p>
-      </div>
-    </div>
-
-    </div>
-  </section> -->
-
   
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code class="language-bibtex">
+        @article{yan2025m2diffuser,
+          title={M2Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes},
+          author={Yan, Sixu and Zhang, Zeyu and Han, Muzhi and Wang, Zaijin and Xie, Qi and Li, Zhitian and Li, Zhehan and Liu, Hangxin and Wang, Xinggang and Zhu, Song-Chun},
+          journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+          year={2025},
+          publisher={IEEE}
+        }
+        
         @article{yan2024m2diffuser,
           title={M2Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes}, 
           author={Sixu Yan and Zeyu Zhang and Muzhi Han and Zaijin Wang and Qi Xie and Zhitian Li and Zhehan Li and Hangxin Liu and Xinggang Wang and Song-Chun Zhu},
