@@ -4,6 +4,16 @@ This is the repository that contains source code for the [M²Diffuser website](h
 
 If you find M²Diffuser useful for your work, please cite:
 ```
+# IEEE
+@article{yan2025m2diffuser,
+  title={M2Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes},
+  author={Yan, Sixu and Zhang, Zeyu and Han, Muzhi and Wang, Zaijin and Xie, Qi and Li, Zhitian and Li, Zhehan and Liu, Hangxin and Wang, Xinggang and Zhu, Song-Chun},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2025},
+  publisher={IEEE}
+}
+
+# arXiv
 @article{yan2024m2diffuser,
     title={M2Diffuser: Diffusion-based Trajectory Optimization for Mobile Manipulation in 3D Scenes}, 
     author={Sixu Yan and Zeyu Zhang and Muzhi Han and Zaijin Wang and Qi Xie and Zhitian Li and Zhehan Li and Hangxin Liu and Xinggang Wang and Song-Chun Zhu},
